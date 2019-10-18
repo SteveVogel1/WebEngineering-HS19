@@ -21,11 +21,9 @@
 
 <form action="/inPlaceCalculator/calc" method="get">
     <fieldset class="form padded">
-
         <tmpl:form_row name="en"    label="En"      model="${calculatorInstance}"/>
 
         <tmpl:form_row name="exam"  label="Exam"    model="${calculatorInstance}"/>
-
         <div>
             <label>&nbsp;</label>
             <input type="submit" value="Calculate"/>
