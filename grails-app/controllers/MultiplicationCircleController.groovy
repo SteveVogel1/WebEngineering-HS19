@@ -4,13 +4,14 @@ class MultiplicationCircleController {
     static int cy = radius
 
     def index(MultiplicationCircleModel circleModel) {
+        radius = cx = cy = circleModel.radius;
         circleModel.lines = []
         for(int i = 0; i< circleModel.segmentCount; i++) {
             circleModel.lines.add( new Line (
-                x1: xValueOf(i, circleModel.segmentCount),
-                y1: yValueOf(i, circleModel.segmentCount),
-                x2: xValueOf(i * 2, circleModel.segmentCount), // todo: change according to the tableBase
-                y2: yValueOf(i * 2, circleModel.segmentCount)  // todo: change according to the tableBase
+                x1: xValueOf(i, circleModel.segmentCount, circleModel.radius),
+                y1: yValueOf(i, circleModel.segmentCount, circleModel.radius),
+                x2: xValueOf(i * circleModel.segmentBase, circleModel.segmentCount, circleModel.radius),
+                y2: yValueOf(i * circleModel.segmentBase, circleModel.segmentCount, circleModel.radius)
             ))
         }
         render view:"show", model:[circleInstance: circleModel]
@@ -19,18 +20,18 @@ class MultiplicationCircleController {
     private static double arc(int segment, int segmentCount) {
         2 * Math.PI * segment / segmentCount
     }
-    def xValueOf(int segment, int segmentCount) {
+    def xValueOf(int segment, int segmentCount, int radius) {
         return cx + Math.cos(arc(segment, segmentCount)) * radius
     }
-    def yValueOf(int segment, int segmentCount) {
+    def yValueOf(int segment, int segmentCount, int radius) {
         return cy + Math.sin(arc(segment, segmentCount)) * radius
     }
 }
 
 class MultiplicationCircleModel {
     int segmentCount = 10
-
-    // todo: add a property tableBase such that we can modify and refer to it
+    int segmentBase = 2
+    int radius = 200
 
     List<Line> lines = Collections.EMPTY_LIST
 }
