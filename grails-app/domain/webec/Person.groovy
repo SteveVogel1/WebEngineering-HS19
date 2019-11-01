@@ -4,7 +4,7 @@ class Person {
     String firstName
     String lastName
 
-    String toString(){
+    String toString() {
         return firstName + " " + lastName
     }
 
