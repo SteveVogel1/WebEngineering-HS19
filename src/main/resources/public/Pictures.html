@@ -17,7 +17,7 @@
             }
             const photo = photoInfos[photoNumber++];
             if (photoNumber > 10) {
-                // todo: what to do about the page number here?
+                pageNumber++;
                 photoNumber = 0;
                 findInterestingImages();
                 return;
